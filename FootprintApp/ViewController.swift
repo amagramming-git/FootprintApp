@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
-
+    //AppDelegateのインスタンスを取得
+    let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
