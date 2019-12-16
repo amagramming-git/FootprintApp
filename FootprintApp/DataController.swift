@@ -14,7 +14,7 @@ class DataController: NSObject {
     var persistentContainer: NSPersistentContainer!
     //初期化
     init(completionClosure: @escaping () -> ()) {
-        persistentContainer = NSPersistentContainer(name: "DateManagementApp")
+        persistentContainer = NSPersistentContainer(name: "FootprintApp")
         persistentContainer.loadPersistentStores() { (description, error) in
             if let error = error {
                 fatalError("Failed to load Core Data stack: \(error)")
