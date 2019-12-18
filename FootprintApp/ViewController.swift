@@ -28,14 +28,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //配列fruitsを設定
     let fruits = ["apple", "orange", "melon", "banana", "pineapple"]
     
-    // 7. SecondViewに渡す文字列
-    /*
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    */
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fruits.count
     }
@@ -55,8 +47,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         selectedText = fruits[indexPath.row]
 
         // 8. SecondViewControllerへ遷移するSegueを呼び出す
-        //performSegue(withIdentifier: "showShowFootprintViewController", sender: nil)
+        performSegue(withIdentifier: "showShowFootprintViewController", sender: nil)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showShowFootprintViewController") {
             let secondVC: ShowFootprintViewController = segue.destination as! ShowFootprintViewController
@@ -65,6 +58,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             secondVC.text = selectedText
         }
     }
+    
 
 }
 

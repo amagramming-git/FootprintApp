@@ -27,9 +27,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="zrY-a5-EKn" kind="show" identifier="showShowFootprintViewController" id="Sq1-VY-Itk"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -64,6 +61,7 @@
                     <connections>
                         <outlet property="footprintTableView" destination="owF-fU-kOa" id="58S-EZ-G5j"/>
                         <outlet property="statusButton" destination="7pp-nB-gs4" id="hii-F5-A43"/>
+                        <segue destination="zrY-a5-EKn" kind="show" identifier="showShowFootprintViewController" id="YbK-Fb-dKE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
