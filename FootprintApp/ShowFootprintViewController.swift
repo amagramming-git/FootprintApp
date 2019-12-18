@@ -13,11 +13,13 @@ class ShowFootprintViewController: UIViewController {
     var text : String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(text)
+        
+        testLabel.text = text
         // Do any additional setup after loading the view.
     }
     
 
+    @IBOutlet weak var testLabel: UILabel!
     /*
     // MARK: - Navigation
 

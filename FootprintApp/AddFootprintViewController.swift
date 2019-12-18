@@ -8,14 +8,26 @@
 
 import UIKit
 
-class AddFootprintViewController: UIViewController {
+class AddFootprintViewController: UIViewController,UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        navigationController?.delegate = self
     }
     
+    //戻るボタンを押した時の処理(正確には画面遷移した時の処理)
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if viewController is ViewController {
+            let viewController = viewController as! ViewController
+            if viewController.statusButton.backgroundColor == UIColor.lightGray{
+                viewController.statusButton.backgroundColor = UIColor.blue
+            }else{
+                viewController.statusButton.backgroundColor = UIColor.lightGray
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation
