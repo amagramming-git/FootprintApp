@@ -28,6 +28,11 @@ class DataController: NSObject {
         let location = NSEntityDescription.insertNewObject(forEntityName: "Locations", into: context) as! Locations
         return location
     }
+    func createFootprint() -> Footprints {
+        let context = persistentContainer.viewContext
+        let footprint = NSEntityDescription.insertNewObject(forEntityName: "Footprints", into: context) as! Footprints
+        return footprint
+    }
     //NSManagedObjectインスタンスの保存
     func saveContext() {
         let context = persistentContainer.viewContext
@@ -58,8 +63,9 @@ class DataController: NSObject {
     }
     
     var locations: [NSManagedObject] = []
+    var footprints:[NSManagedObject] = []
 
-    func save(time: String,latitude:Double,longitude:Double,taskId:String) {
+    func saveLocation(time: String,latitude:Double,longitude:Double,taskId:String) {
        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
          return
        }
@@ -85,7 +91,7 @@ class DataController: NSObject {
        }
     }
     
-    func delete(taskId:String) {
+    func deleteLocation(taskId:String) {
        guard let appDelegate:AppDelegate = UIApplication.shared.delegate as? AppDelegate else {
          return
        }
@@ -107,5 +113,30 @@ class DataController: NSObject {
                     print(error)
               }
         }
+    }
+    func saveFootprint(title: String,startTime:String,endTime:String,taskId:String) {
+       guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+         return
+       }
+
+       let managedContext = appDelegate.persistentContainer.viewContext
+
+       let entity = NSEntityDescription.entity(forEntityName: "Footprints",
+                                               in: managedContext)!
+
+       let footprint = NSManagedObject(entity: entity,
+                                    insertInto: managedContext)
+
+       footprint.setValue(time, forKey: "time")
+       footprint.setValue(startTime, forKey: "startTime")
+       footprint.setValue(endTime, forKey: "endTime")
+       footprint.setValue(taskId, forKey: "taskId")
+
+       do {
+         try managedContext.save()
+         footprints.append(footprint)
+       } catch let error as NSError {
+         print("Could not save. \(error), \(error.userInfo)")
+       }
     }
 }

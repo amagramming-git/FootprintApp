@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--First-->
+        <!--ホーム-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FootprintApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -35,7 +35,10 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pp-nB-gs4">
-                                <rect key="frame" x="0.0" y="88" width="414" height="30"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="iuG-X4-WQo"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="statusButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5Gv-CJ-TiQ"/>
@@ -50,11 +53,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="First" id="Yth-8d-6Bi">
+                    <navigationItem key="navigationItem" title="ホーム" id="Yth-8d-6Bi">
                         <barButtonItem key="backBarButtonItem" title="Back" id="ywq-Ow-76h"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gwJ-O1-Ndj">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="settings_89381" style="plain" id="gwJ-O1-Ndj">
+                            <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-2"/>
+                            <inset key="largeContentSizeImageInsets" minX="0.0" minY="-1" maxX="0.0" maxY="0.0"/>
                             <connections>
-                                <segue destination="r6T-H8-VKw" kind="show" id="2iY-be-bdk"/>
+                                <segue destination="r6T-H8-VKw" kind="show" id="VtC-yT-SRy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -62,6 +67,7 @@
                         <outlet property="footprintTableView" destination="owF-fU-kOa" id="58S-EZ-G5j"/>
                         <outlet property="statusButton" destination="7pp-nB-gs4" id="hii-F5-A43"/>
                         <segue destination="zrY-a5-EKn" kind="show" identifier="showShowFootprintViewController" id="YbK-Fb-dKE"/>
+                        <segue destination="dQM-2C-PDS" kind="presentation" identifier="showAddFootprintViewController" modalPresentationStyle="fullScreen" id="Ars-5B-KHO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -94,25 +100,34 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZF-jw-oy8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2226.0869565217395" y="651.5625"/>
+            <point key="canvasLocation" x="1048" y="1009"/>
         </scene>
-        <!--Add-->
+        <!--View Controller-->
         <scene sceneID="OzC-W7-YgG">
             <objects>
-                <viewController id="r6T-H8-VKw" customClass="AddFootprintViewController" customModule="FootprintApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="r6T-H8-VKw" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ajz-lH-fv1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="設定画面についてはまだ未着手" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbf-md-RrF">
+                                <rect key="frame" x="49" y="319" width="316" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="VfS-gP-dnY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Add" id="uDB-PJ-8u0">
+                    <navigationItem key="navigationItem" id="uDB-PJ-8u0">
                         <barButtonItem key="backBarButtonItem" title="Back" id="35d-9P-qNt"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sEO-7f-MhD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2217" y="-110"/>
+            <point key="canvasLocation" x="2350.7246376811595" y="-492.1875"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wuW-Sg-l5l">
@@ -132,5 +147,85 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="121.875"/>
         </scene>
+        <!--Add Footprint View Controller-->
+        <scene sceneID="Dnf-Ay-s12">
+            <objects>
+                <viewController id="dQM-2C-PDS" customClass="AddFootprintViewController" customModule="FootprintApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xeV-hA-nR1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWc-V7-u5O">
+                                <rect key="frame" x="228" y="719" width="186" height="89"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="開始"/>
+                                <connections>
+                                    <action selector="startButton:" destination="dQM-2C-PDS" eventType="touchUpInside" id="Uej-jW-jOj"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="終了時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjb-yi-Ble">
+                                <rect key="frame" x="20" y="204" width="70" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7E2-0M-ltD">
+                                <rect key="frame" x="20" y="248" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="finishTimeTextField:" destination="dQM-2C-PDS" eventType="editingDidEnd" id="b5F-QF-rlt"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRf-Pt-znc">
+                                <rect key="frame" x="20" y="102" width="70" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mWB-ze-Vnm">
+                                <rect key="frame" x="20" y="131" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="titleTextField:" destination="dQM-2C-PDS" eventType="editingDidEnd" id="gdL-u6-xpo"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="新規足跡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ud-ZS-aUT">
+                                <rect key="frame" x="172" y="39" width="70" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pS9-tK-vHo">
+                                <rect key="frame" x="14" y="719" width="176" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="キャンセル"/>
+                                <connections>
+                                    <action selector="cancelButton:" destination="dQM-2C-PDS" eventType="touchUpInside" id="ps6-0V-Ikf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Afo-qK-e6g"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="z2x-bG-TiN"/>
+                    <connections>
+                        <outlet property="finishTimeTextField" destination="7E2-0M-ltD" id="rVJ-W8-ZKI"/>
+                        <outlet property="titleTextField" destination="mWB-ze-Vnm" id="L8X-rC-B6n"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M6X-b4-gtU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2350.7246376811595" y="308.70535714285711"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="settings_89381" width="33" height="33"/>
+    </resources>
 </document>

@@ -16,6 +16,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var footprintTableView: UITableView!
     
     @IBAction func statusButton(_ sender: Any) {
+        performSegue(withIdentifier: "showAddFootprintViewController", sender: nil)
     }
     
     @IBOutlet weak var statusButton: UIButton!
@@ -56,9 +57,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
             // 11. SecondViewControllerのtextに選択した文字列を設定する
             secondVC.text = selectedText
+        }else if(segue.identifier == "showAddFootprintViewController"){
+            //let secondVC: ConfirmationViewController = segue.destination as! ConfirmationViewController
         }
     }
-    
+    //Viewを表示した時に動く
+    override func viewDidAppear(_ animated: Bool) {
+     //ここに画面遷移処理を記述するときちんと走る。
+        print("デバック")
+    }
+
 
 }
 

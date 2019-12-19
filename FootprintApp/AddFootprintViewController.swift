@@ -1,33 +1,59 @@
 //
-//  AddFootprintViewController.swift
+//  ConfirmationViewController.swift
 //  FootprintApp
 //
-//  Created by 神戸悟 on 2019/12/16.
+//  Created by 神戸悟 on 2019/12/18.
 //  Copyright © 2019 SatoruKambe. All rights reserved.
 //
 
 import UIKit
 
-class AddFootprintViewController: UIViewController,UINavigationControllerDelegate {
+class AddFootprintViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        navigationController?.delegate = self
+    }
+
+    @IBAction func titleTextField(_ sender: Any) {
     }
     
-    //戻るボタンを押した時の処理(正確には画面遷移した時の処理)
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        if viewController is ViewController {
-            let viewController = viewController as! ViewController
-            if viewController.statusButton.backgroundColor == UIColor.lightGray{
-                viewController.statusButton.backgroundColor = UIColor.blue
-            }else{
-                viewController.statusButton.backgroundColor = UIColor.lightGray
-            }
-        }
+    @IBAction func finishTimeTextField(_ sender: Any) {
     }
+    
+    
+    @IBOutlet weak var titleTextField: UITextField!
+    
+    
+    @IBOutlet weak var finishTimeTextField: UITextField!
+    
+    var titleText:String?
+    var finishTimeText:String?
+    
+    @IBAction func startButton(_ sender: Any) {
+        //入力されたデータを取り出して保存する。
+        self.dismiss(animated: true, completion:{
+            /*
+            self.titleText = self.titleTextField.text!
+            self.finishTimeText = self.finishTimeTextField.text!
+            print(self.titleText)
+            print(self.finishTimeText)
+            */
+            let userDefaults = UserDefaults.standard
+            if let value = userDefaults.string(forKey: "taskId"){
+                self.titleTextField.text = value
+            }
+
+        })
+    }
+    
+    
+    @IBAction func cancelButton(_ sender: Any) {
+        //キャンセルボタン押下時は何もせず戻る
+        self.dismiss(animated: true, completion:nil)
+    }
+    
 
     /*
     // MARK: - Navigation
@@ -38,5 +64,5 @@ class AddFootprintViewController: UIViewController,UINavigationControllerDelegat
         // Pass the selected object to the new view controller.
     }
     */
-
+    
 }

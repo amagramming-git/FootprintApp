@@ -15,9 +15,11 @@
 		3E03A72F23A4972400E27C49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E03A72E23A4972400E27C49 /* Assets.xcassets */; };
 		3E03A73223A4972400E27C49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E03A73023A4972400E27C49 /* LaunchScreen.storyboard */; };
 		3E1A2CAF23A6514500244AA3 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1A2CAE23A6514500244AA3 /* DataController.swift */; };
-		3E1A2CB223A6517B00244AA3 /* Locations+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1A2CB023A6517B00244AA3 /* Locations+CoreDataClass.swift */; };
-		3E1A2CB323A6517B00244AA3 /* Locations+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1A2CB123A6517B00244AA3 /* Locations+CoreDataProperties.swift */; };
-		3E275DB923A74F7500210114 /* AddFootprintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E275DB823A74F7500210114 /* AddFootprintViewController.swift */; };
+		3E5FC46C23AA6A53004D791A /* AddFootprintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FC46B23AA6A53004D791A /* AddFootprintViewController.swift */; };
+		3E861A9123AB427300DCF845 /* Locations+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E861A8D23AB427300DCF845 /* Locations+CoreDataClass.swift */; };
+		3E861A9223AB427300DCF845 /* Locations+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E861A8E23AB427300DCF845 /* Locations+CoreDataProperties.swift */; };
+		3E861A9323AB427300DCF845 /* Footprints+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E861A8F23AB427300DCF845 /* Footprints+CoreDataClass.swift */; };
+		3E861A9423AB427300DCF845 /* Footprints+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E861A9023AB427300DCF845 /* Footprints+CoreDataProperties.swift */; };
 		3EA2AC6323A49F61005FBABF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AC6223A49F61005FBABF /* CoreLocation.framework */; };
 		3EC291D023A8480C00DDFB64 /* ShowFootprintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC291CF23A8480C00DDFB64 /* ShowFootprintViewController.swift */; };
 /* End PBXBuildFile section */
@@ -33,9 +35,11 @@
 		3E03A73123A4972400E27C49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E03A73323A4972400E27C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E1A2CAE23A6514500244AA3 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		3E1A2CB023A6517B00244AA3 /* Locations+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locations+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		3E1A2CB123A6517B00244AA3 /* Locations+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locations+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		3E275DB823A74F7500210114 /* AddFootprintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFootprintViewController.swift; sourceTree = "<group>"; };
+		3E5FC46B23AA6A53004D791A /* AddFootprintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFootprintViewController.swift; sourceTree = "<group>"; };
+		3E861A8D23AB427300DCF845 /* Locations+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locations+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3E861A8E23AB427300DCF845 /* Locations+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locations+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3E861A8F23AB427300DCF845 /* Footprints+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Footprints+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3E861A9023AB427300DCF845 /* Footprints+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Footprints+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3EA2AC6223A49F61005FBABF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3EC291CF23A8480C00DDFB64 /* ShowFootprintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowFootprintViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,12 +76,14 @@
 		3E03A72123A4971F00E27C49 /* FootprintApp */ = {
 			isa = PBXGroup;
 			children = (
-				3E1A2CB023A6517B00244AA3 /* Locations+CoreDataClass.swift */,
-				3E1A2CB123A6517B00244AA3 /* Locations+CoreDataProperties.swift */,
+				3E861A8D23AB427300DCF845 /* Locations+CoreDataClass.swift */,
+				3E861A8E23AB427300DCF845 /* Locations+CoreDataProperties.swift */,
+				3E861A8F23AB427300DCF845 /* Footprints+CoreDataClass.swift */,
+				3E861A9023AB427300DCF845 /* Footprints+CoreDataProperties.swift */,
 				3E03A72223A4971F00E27C49 /* AppDelegate.swift */,
 				3E03A72423A4971F00E27C49 /* SceneDelegate.swift */,
-				3E275DB823A74F7500210114 /* AddFootprintViewController.swift */,
 				3EC291CF23A8480C00DDFB64 /* ShowFootprintViewController.swift */,
+				3E5FC46B23AA6A53004D791A /* AddFootprintViewController.swift */,
 				3E03A72623A4971F00E27C49 /* ViewController.swift */,
 				3E03A72823A4971F00E27C49 /* Main.storyboard */,
 				3E03A72E23A4972400E27C49 /* Assets.xcassets */,
@@ -168,14 +174,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E275DB923A74F7500210114 /* AddFootprintViewController.swift in Sources */,
-				3E1A2CB223A6517B00244AA3 /* Locations+CoreDataClass.swift in Sources */,
+				3E861A9423AB427300DCF845 /* Footprints+CoreDataProperties.swift in Sources */,
+				3E861A9323AB427300DCF845 /* Footprints+CoreDataClass.swift in Sources */,
 				3E1A2CAF23A6514500244AA3 /* DataController.swift in Sources */,
 				3EC291D023A8480C00DDFB64 /* ShowFootprintViewController.swift in Sources */,
+				3E5FC46C23AA6A53004D791A /* AddFootprintViewController.swift in Sources */,
 				3E03A72723A4971F00E27C49 /* ViewController.swift in Sources */,
 				3E03A72323A4971F00E27C49 /* AppDelegate.swift in Sources */,
-				3E1A2CB323A6517B00244AA3 /* Locations+CoreDataProperties.swift in Sources */,
+				3E861A9123AB427300DCF845 /* Locations+CoreDataClass.swift in Sources */,
 				3E03A72523A4971F00E27C49 /* SceneDelegate.swift in Sources */,
+				3E861A9223AB427300DCF845 /* Locations+CoreDataProperties.swift in Sources */,
 				3E03A72D23A4971F00E27C49 /* FootprintApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
