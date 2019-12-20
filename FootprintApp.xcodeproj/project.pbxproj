@@ -16,10 +16,10 @@
 		3E03A73223A4972400E27C49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E03A73023A4972400E27C49 /* LaunchScreen.storyboard */; };
 		3E1A2CAF23A6514500244AA3 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1A2CAE23A6514500244AA3 /* DataController.swift */; };
 		3E5FC46C23AA6A53004D791A /* AddFootprintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FC46B23AA6A53004D791A /* AddFootprintViewController.swift */; };
-		3E861A9123AB427300DCF845 /* Locations+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E861A8D23AB427300DCF845 /* Locations+CoreDataClass.swift */; };
-		3E861A9223AB427300DCF845 /* Locations+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E861A8E23AB427300DCF845 /* Locations+CoreDataProperties.swift */; };
-		3E861A9323AB427300DCF845 /* Footprints+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E861A8F23AB427300DCF845 /* Footprints+CoreDataClass.swift */; };
-		3E861A9423AB427300DCF845 /* Footprints+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E861A9023AB427300DCF845 /* Footprints+CoreDataProperties.swift */; };
+		3E8FB00C23AC3FC9009901BF /* Locations+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8FB00823AC3FC9009901BF /* Locations+CoreDataClass.swift */; };
+		3E8FB00D23AC3FC9009901BF /* Locations+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8FB00923AC3FC9009901BF /* Locations+CoreDataProperties.swift */; };
+		3E8FB00E23AC3FC9009901BF /* Footprints+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8FB00A23AC3FC9009901BF /* Footprints+CoreDataClass.swift */; };
+		3E8FB00F23AC3FC9009901BF /* Footprints+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8FB00B23AC3FC9009901BF /* Footprints+CoreDataProperties.swift */; };
 		3EA2AC6323A49F61005FBABF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AC6223A49F61005FBABF /* CoreLocation.framework */; };
 		3EC291D023A8480C00DDFB64 /* ShowFootprintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC291CF23A8480C00DDFB64 /* ShowFootprintViewController.swift */; };
 /* End PBXBuildFile section */
@@ -36,10 +36,10 @@
 		3E03A73323A4972400E27C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E1A2CAE23A6514500244AA3 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		3E5FC46B23AA6A53004D791A /* AddFootprintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFootprintViewController.swift; sourceTree = "<group>"; };
-		3E861A8D23AB427300DCF845 /* Locations+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locations+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3E861A8E23AB427300DCF845 /* Locations+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locations+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3E861A8F23AB427300DCF845 /* Footprints+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Footprints+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3E861A9023AB427300DCF845 /* Footprints+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Footprints+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3E8FB00823AC3FC9009901BF /* Locations+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locations+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3E8FB00923AC3FC9009901BF /* Locations+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locations+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3E8FB00A23AC3FC9009901BF /* Footprints+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Footprints+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3E8FB00B23AC3FC9009901BF /* Footprints+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Footprints+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3EA2AC6223A49F61005FBABF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3EC291CF23A8480C00DDFB64 /* ShowFootprintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowFootprintViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,10 +76,10 @@
 		3E03A72123A4971F00E27C49 /* FootprintApp */ = {
 			isa = PBXGroup;
 			children = (
-				3E861A8D23AB427300DCF845 /* Locations+CoreDataClass.swift */,
-				3E861A8E23AB427300DCF845 /* Locations+CoreDataProperties.swift */,
-				3E861A8F23AB427300DCF845 /* Footprints+CoreDataClass.swift */,
-				3E861A9023AB427300DCF845 /* Footprints+CoreDataProperties.swift */,
+				3E8FB00823AC3FC9009901BF /* Locations+CoreDataClass.swift */,
+				3E8FB00923AC3FC9009901BF /* Locations+CoreDataProperties.swift */,
+				3E8FB00A23AC3FC9009901BF /* Footprints+CoreDataClass.swift */,
+				3E8FB00B23AC3FC9009901BF /* Footprints+CoreDataProperties.swift */,
 				3E03A72223A4971F00E27C49 /* AppDelegate.swift */,
 				3E03A72423A4971F00E27C49 /* SceneDelegate.swift */,
 				3EC291CF23A8480C00DDFB64 /* ShowFootprintViewController.swift */,
@@ -174,17 +174,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E861A9423AB427300DCF845 /* Footprints+CoreDataProperties.swift in Sources */,
-				3E861A9323AB427300DCF845 /* Footprints+CoreDataClass.swift in Sources */,
+				3E8FB00C23AC3FC9009901BF /* Locations+CoreDataClass.swift in Sources */,
+				3E8FB00E23AC3FC9009901BF /* Footprints+CoreDataClass.swift in Sources */,
 				3E1A2CAF23A6514500244AA3 /* DataController.swift in Sources */,
 				3EC291D023A8480C00DDFB64 /* ShowFootprintViewController.swift in Sources */,
 				3E5FC46C23AA6A53004D791A /* AddFootprintViewController.swift in Sources */,
 				3E03A72723A4971F00E27C49 /* ViewController.swift in Sources */,
 				3E03A72323A4971F00E27C49 /* AppDelegate.swift in Sources */,
-				3E861A9123AB427300DCF845 /* Locations+CoreDataClass.swift in Sources */,
+				3E8FB00D23AC3FC9009901BF /* Locations+CoreDataProperties.swift in Sources */,
 				3E03A72523A4971F00E27C49 /* SceneDelegate.swift in Sources */,
-				3E861A9223AB427300DCF845 /* Locations+CoreDataProperties.swift in Sources */,
 				3E03A72D23A4971F00E27C49 /* FootprintApp.xcdatamodeld in Sources */,
+				3E8FB00F23AC3FC9009901BF /* Footprints+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@
 import UIKit
 
 class AddFootprintViewController: UIViewController {
-
+    let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,21 +31,37 @@ class AddFootprintViewController: UIViewController {
     var titleText:String?
     var finishTimeText:String?
     
+    //位置情報取得開始時に画面に該当タスクを表示させるためのフラグ
+    var taskFlag:Bool?
+    var viewController:ViewController?
+    
     @IBAction func startButton(_ sender: Any) {
-        //入力されたデータを取り出して保存する。
-        self.dismiss(animated: true, completion:{
-            /*
-            self.titleText = self.titleTextField.text!
-            self.finishTimeText = self.finishTimeTextField.text!
-            print(self.titleText)
-            print(self.finishTimeText)
-            */
+        if self.titleTextField.text != nil && self.finishTimeTextField.text != nil{
+            //UserDefaultsにこれから実行するtaskIdをセットする,加え実行フラグを立てる
             let userDefaults = UserDefaults.standard
-            if let value = userDefaults.string(forKey: "taskId"){
-                self.titleTextField.text = value
+            var value = userDefaults.integer(forKey: "taskId")
+            value = value + 1
+            userDefaults.set(value, forKey: "taskId")
+            //CoreDataに今回のtaskIdについて保存する
+            let f = DateFormatter()
+            f.dateFormat = "yyyyMMddHHmmss"
+            let startTime = Date()
+            let endTime = Calendar.current.date(byAdding: .hour, value: Int(self.finishTimeTextField.text!)!, to: startTime)!
+            if let dataController = appDelegate.dataController {
+                dataController.saveFootprint(title: self.titleTextField.text!, startTime: f.string(from: startTime), endTime: f.string(from: endTime), taskId: Int32(value))
+                taskFlag = true
             }
-
-        })
+            //現在の画面を閉じる
+            self.dismiss(animated: true, completion:{
+                if let viewController = self.viewController{
+                    viewController.reloadThis()
+                }
+            })
+        }else{
+            //警告文を加える
+        }
+        
+        self.dismiss(animated: true, completion:nil)
     }
     
     
@@ -53,7 +69,9 @@ class AddFootprintViewController: UIViewController {
         //キャンセルボタン押下時は何もせず戻る
         self.dismiss(animated: true, completion:nil)
     }
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
     /*
     // MARK: - Navigation

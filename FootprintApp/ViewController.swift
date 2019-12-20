@@ -13,24 +13,44 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //AppDelegateのインスタンスを取得
     let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
+    //画面に存在するばボタンやらいろいろ
     @IBOutlet weak var footprintTableView: UITableView!
     
     @IBAction func statusButton(_ sender: Any) {
-        performSegue(withIdentifier: "showAddFootprintViewController", sender: nil)
+        //performSegue(withIdentifier: "showAddFootprintViewController", sender: nil)
+        if let addFootprintViewController = addFootprintViewController {
+            present(addFootprintViewController, animated: true, completion: nil)
+        }
     }
     
     @IBOutlet weak var statusButton: UIButton!
     
+    //画面遷移先のインスタンスを保持
+    var addFootprintViewController:AddFootprintViewController?
+    
+    //画面初期処理
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        if let dataController = appDelegate.dataController {
+            let footprintsfetch = dataController.fetchFootprints()
+            for footprint in footprintsfetch{
+                self.footprints.append(footprint)
+            }
+        }
+        addFootprintViewController = storyboard?.instantiateViewController(withIdentifier: "showAddFootprintViewController") as? AddFootprintViewController
+        if let addFootprintViewController = self.addFootprintViewController{
+            addFootprintViewController.viewController = self
+        }
     }
-    var selectedText:String?
-    //配列fruitsを設定
-    let fruits = ["apple", "orange", "melon", "banana", "pineapple"]
     
+    // MARK: Table Viewのいろいろ
+    
+    //TableViewのいろいろ
+    var footprints: Array<Footprints> = []
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fruits.count
+        return footprints.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -38,14 +58,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "SampleCell", for: indexPath)
         
         // セルに表示する値を設定する
-        cell.textLabel!.text = fruits[indexPath.row]
+        cell.textLabel!.text = footprints[indexPath.row].title
         
         return cell
     }
     //セルを押した時の処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 8. SecondViewControllerに渡す文字列をセット
-        selectedText = fruits[indexPath.row]
+        //selectedText = fruits[indexPath.row]
 
         // 8. SecondViewControllerへ遷移するSegueを呼び出す
         performSegue(withIdentifier: "showShowFootprintViewController", sender: nil)
@@ -53,18 +73,55 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showShowFootprintViewController") {
-            let secondVC: ShowFootprintViewController = segue.destination as! ShowFootprintViewController
+            //let secondVC: ShowFootprintViewController = segue.destination as! ShowFootprintViewController
 
             // 11. SecondViewControllerのtextに選択した文字列を設定する
-            secondVC.text = selectedText
+            //secondVC.text = selectedText
         }else if(segue.identifier == "showAddFootprintViewController"){
             //let secondVC: ConfirmationViewController = segue.destination as! ConfirmationViewController
         }
     }
+    
+    
+    
+    
     //Viewを表示した時に動く
-    override func viewDidAppear(_ animated: Bool) {
-     //ここに画面遷移処理を記述するときちんと走る。
-        print("デバック")
+    override func viewWillAppear(_ animated: Bool) {
+        //新規Taskを登録してからViewを読み込んだ際には追加する
+        print("sfadfasdfawefasfawe")
+        if let taskFlag = addFootprintViewController?.taskFlag{
+            if taskFlag == true {
+                addFootprintViewController?.taskFlag = false
+                //新しく登録したFootprintをtableに登録する。
+                if let dataController = appDelegate.dataController {
+                    let userDefaults = UserDefaults.standard
+                    let taskId = userDefaults.integer(forKey: "taskId")
+                    let footprint = dataController.fetchFootprints(taskId: Int32(taskId))
+                    footprints.append(footprint[0])
+                }
+                footprintTableView.reloadData()
+            }
+        }
+        //実行フラグが立っていたら位置情報取得を開始する
+        
+        
+        
+    }
+    func reloadThis(){
+        print("sfadfasdfawefasfawe")
+        if let taskFlag = addFootprintViewController?.taskFlag{
+            if taskFlag == true {
+                addFootprintViewController?.taskFlag = false
+                //新しく登録したFootprintをtableに登録する。
+                if let dataController = appDelegate.dataController {
+                    let userDefaults = UserDefaults.standard
+                    let taskId = userDefaults.integer(forKey: "taskId")
+                    let footprint = dataController.fetchFootprints(taskId: Int32(taskId))
+                    footprints.append(footprint[0])
+                }
+                footprintTableView.reloadData()
+            }
+        }
     }
 
 

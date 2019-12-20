@@ -2,7 +2,7 @@
 //  Locations+CoreDataProperties.swift
 //  FootprintApp
 //
-//  Created by 神戸悟 on 2019/12/19.
+//  Created by 神戸悟 on 2019/12/20.
 //  Copyright © 2019 SatoruKambe. All rights reserved.
 //
 //
@@ -19,7 +19,7 @@ extension Locations {
 
     @NSManaged public var latitude: Double
     @NSManaged public var longitude: Double
-    @NSManaged public var taskId: String?
+    @NSManaged public var taskId: Int32
     @NSManaged public var time: String?
     @NSManaged public var newRelationship: Footprints?
 

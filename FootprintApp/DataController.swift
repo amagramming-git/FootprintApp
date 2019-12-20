@@ -48,14 +48,38 @@ class DataController: NSObject {
         }
     }
     //NSManagedObjectインスタンスの読み込み
+    
     func fetchLocations() -> [Locations] {
         let context = persistentContainer.viewContext
         let employeesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Locations")
         //フィルタリングのサンプルコード
-        //let firstName = "Trevor"
-        //employeesFetch.predicate = NSPredicate(format: "firstName == %@", firstName)
+        let firstName = "Trevor"
+        employeesFetch.predicate = NSPredicate(format: "firstName == %@", firstName)
         do {
             let fetchedEmployees = try context.fetch(employeesFetch) as! [Locations]
+            return fetchedEmployees
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
+        }
+    }
+    func fetchFootprints() -> [Footprints] {
+        let context = persistentContainer.viewContext
+        let employeesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Footprints")
+        do {
+            let fetchedEmployees = try context.fetch(employeesFetch) as! [Footprints]
+            return fetchedEmployees
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
+        }
+    }
+    
+    func fetchFootprints(taskId:Int32) -> [Footprints] {
+        let context = persistentContainer.viewContext
+        let employeesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Footprints")
+        //フィルタリングのサンプルコード
+        employeesFetch.predicate = NSPredicate(format: "taskId == %d", taskId)
+        do {
+            let fetchedEmployees = try context.fetch(employeesFetch) as! [Footprints]
             return fetchedEmployees
         } catch {
             fatalError("Failed to fetch employees: \(error)")
@@ -65,7 +89,7 @@ class DataController: NSObject {
     var locations: [NSManagedObject] = []
     var footprints:[NSManagedObject] = []
 
-    func saveLocation(time: String,latitude:Double,longitude:Double,taskId:String) {
+    func saveLocation(time: String,latitude:Double,longitude:Double,taskId:Int32) {
        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
          return
        }
@@ -91,7 +115,7 @@ class DataController: NSObject {
        }
     }
     
-    func deleteLocation(taskId:String) {
+    func deleteLocation(taskId:Int32) {
        guard let appDelegate:AppDelegate = UIApplication.shared.delegate as? AppDelegate else {
          return
        }
@@ -114,7 +138,7 @@ class DataController: NSObject {
               }
         }
     }
-    func saveFootprint(title: String,startTime:String,endTime:String,taskId:String) {
+    func saveFootprint(title: String,startTime:String,endTime:String,taskId:Int32) {
        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
          return
        }
@@ -127,7 +151,7 @@ class DataController: NSObject {
        let footprint = NSManagedObject(entity: entity,
                                     insertInto: managedContext)
 
-       footprint.setValue(time, forKey: "time")
+       footprint.setValue(title, forKey: "title")
        footprint.setValue(startTime, forKey: "startTime")
        footprint.setValue(endTime, forKey: "endTime")
        footprint.setValue(taskId, forKey: "taskId")
