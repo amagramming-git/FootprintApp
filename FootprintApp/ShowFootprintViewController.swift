@@ -10,11 +10,10 @@ import UIKit
 
 class ShowFootprintViewController: UIViewController {
 
-    var text : String?
+    var selectedfootprint : Footprints?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        testLabel.text = text
+
         // Do any additional setup after loading the view.
     }
     

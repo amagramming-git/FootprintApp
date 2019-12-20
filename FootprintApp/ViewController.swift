@@ -13,7 +13,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //AppDelegateのインスタンスを取得
     let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
-    //画面に存在するばボタンやらいろいろ
+    //MARK:画面パーツ関係
+    
     @IBOutlet weak var footprintTableView: UITableView!
     
     @IBAction func statusButton(_ sender: Any) {
@@ -24,6 +25,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBOutlet weak var statusButton: UIButton!
+    
+    
+    
     
     //画面遷移先のインスタンスを保持
     var addFootprintViewController:AddFootprintViewController?
@@ -44,15 +48,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    // MARK: Table Viewのいろいろ
+    // MARK: Table View関係
     
     //TableViewのいろいろ
     var footprints: Array<Footprints> = []
-
+    //表示数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return footprints.count
     }
-    
+    //表示内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // セルを取得する
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "SampleCell", for: indexPath)
@@ -62,21 +66,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         return cell
     }
+    
+    var selectedfootprint:Footprints?
     //セルを押した時の処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 8. SecondViewControllerに渡す文字列をセット
-        //selectedText = fruits[indexPath.row]
+        selectedfootprint = footprints[indexPath.row]
 
         // 8. SecondViewControllerへ遷移するSegueを呼び出す
         performSegue(withIdentifier: "showShowFootprintViewController", sender: nil)
     }
     
+    //Segueによる画面遷移
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showShowFootprintViewController") {
-            //let secondVC: ShowFootprintViewController = segue.destination as! ShowFootprintViewController
+            let secondVC: ShowFootprintViewController = segue.destination as! ShowFootprintViewController
 
             // 11. SecondViewControllerのtextに選択した文字列を設定する
-            //secondVC.text = selectedText
+            secondVC.selectedfootprint = selectedfootprint
         }else if(segue.identifier == "showAddFootprintViewController"){
             //let secondVC: ConfirmationViewController = segue.destination as! ConfirmationViewController
         }
