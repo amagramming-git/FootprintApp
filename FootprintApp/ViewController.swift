@@ -81,49 +81,5 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //let secondVC: ConfirmationViewController = segue.destination as! ConfirmationViewController
         }
     }
-    
-    
-    
-    
-    //Viewを表示した時に動く
-    override func viewWillAppear(_ animated: Bool) {
-        //新規Taskを登録してからViewを読み込んだ際には追加する
-        print("sfadfasdfawefasfawe")
-        if let taskFlag = addFootprintViewController?.taskFlag{
-            if taskFlag == true {
-                addFootprintViewController?.taskFlag = false
-                //新しく登録したFootprintをtableに登録する。
-                if let dataController = appDelegate.dataController {
-                    let userDefaults = UserDefaults.standard
-                    let taskId = userDefaults.integer(forKey: "taskId")
-                    let footprint = dataController.fetchFootprints(taskId: Int32(taskId))
-                    footprints.append(footprint[0])
-                }
-                footprintTableView.reloadData()
-            }
-        }
-        //実行フラグが立っていたら位置情報取得を開始する
-        
-        
-        
-    }
-    func reloadThis(){
-        print("sfadfasdfawefasfawe")
-        if let taskFlag = addFootprintViewController?.taskFlag{
-            if taskFlag == true {
-                addFootprintViewController?.taskFlag = false
-                //新しく登録したFootprintをtableに登録する。
-                if let dataController = appDelegate.dataController {
-                    let userDefaults = UserDefaults.standard
-                    let taskId = userDefaults.integer(forKey: "taskId")
-                    let footprint = dataController.fetchFootprints(taskId: Int32(taskId))
-                    footprints.append(footprint[0])
-                }
-                footprintTableView.reloadData()
-            }
-        }
-    }
-
-
 }
 

@@ -32,7 +32,6 @@ class AddFootprintViewController: UIViewController {
     var finishTimeText:String?
     
     //位置情報取得開始時に画面に該当タスクを表示させるためのフラグ
-    var taskFlag:Bool?
     var viewController:ViewController?
     
     @IBAction func startButton(_ sender: Any) {
@@ -48,15 +47,16 @@ class AddFootprintViewController: UIViewController {
             let startTime = Date()
             let endTime = Calendar.current.date(byAdding: .hour, value: Int(self.finishTimeTextField.text!)!, to: startTime)!
             if let dataController = appDelegate.dataController {
-                dataController.saveFootprint(title: self.titleTextField.text!, startTime: f.string(from: startTime), endTime: f.string(from: endTime), taskId: Int32(value))
-                taskFlag = true
+                let footprint = dataController.saveFootprint(title: self.titleTextField.text!, startTime: f.string(from: startTime), endTime: f.string(from: endTime), taskId: Int32(value))
+                if let footprint = footprint{
+                    if let viewController = self.viewController{
+                        viewController.footprints.append(footprint)
+                        viewController.footprintTableView.reloadData()
+                    }
+                }
             }
             //現在の画面を閉じる
-            self.dismiss(animated: true, completion:{
-                if let viewController = self.viewController{
-                    viewController.reloadThis()
-                }
-            })
+            self.dismiss(animated: true, completion:nil)
         }else{
             //警告文を加える
         }

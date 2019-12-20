@@ -138,9 +138,9 @@ class DataController: NSObject {
               }
         }
     }
-    func saveFootprint(title: String,startTime:String,endTime:String,taskId:Int32) {
+    func saveFootprint(title: String,startTime:String,endTime:String,taskId:Int32) -> Footprints?{
        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-         return
+         return nil
        }
 
        let managedContext = appDelegate.persistentContainer.viewContext
@@ -157,10 +157,12 @@ class DataController: NSObject {
        footprint.setValue(taskId, forKey: "taskId")
 
        do {
-         try managedContext.save()
-         footprints.append(footprint)
+        try managedContext.save()
+        footprints.append(footprint)
+        return footprint as? Footprints
        } catch let error as NSError {
          print("Could not save. \(error), \(error.userInfo)")
+        return nil
        }
     }
 }
