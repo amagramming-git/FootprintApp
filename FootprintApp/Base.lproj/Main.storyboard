@@ -81,26 +81,14 @@
                     <view key="view" contentMode="scaleToFill" id="0LO-iY-4ch">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XfU-KV-sUW">
-                                <rect key="frame" x="186" y="272" width="42" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="16u-KN-kyD"/>
                     </view>
                     <navigationItem key="navigationItem" id="Bsu-Ym-G5l"/>
-                    <connections>
-                        <outlet property="testLabel" destination="XfU-KV-sUW" id="tBR-FF-8i7"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZF-jw-oy8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1048" y="1009"/>
+            <point key="canvasLocation" x="1048" y="958"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="OzC-W7-YgG">
@@ -127,7 +115,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sEO-7f-MhD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1816" y="-928"/>
+            <point key="canvasLocation" x="2049" y="-714"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wuW-Sg-l5l">
@@ -166,7 +154,7 @@
                                     <action selector="startButton:" destination="dQM-2C-PDS" eventType="touchUpInside" id="Uej-jW-jOj"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="終了時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjb-yi-Ble">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="位置情報取得時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjb-yi-Ble">
                                 <rect key="frame" x="30" y="160" width="384" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -236,13 +224,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="z2x-bG-TiN"/>
                     <connections>
+                        <outlet property="endTimeLabel" destination="Rjb-yi-Ble" id="UCR-Ul-OcC"/>
                         <outlet property="finishTimeTextField" destination="7E2-0M-ltD" id="rVJ-W8-ZKI"/>
+                        <outlet property="titleLabel" destination="HRf-Pt-znc" id="pI8-1k-CO0"/>
                         <outlet property="titleTextField" destination="mWB-ze-Vnm" id="L8X-rC-B6n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M6X-b4-gtU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2350.7246376811595" y="308.70535714285711"/>
+            <point key="canvasLocation" x="2048" y="-2"/>
         </scene>
     </scenes>
     <resources>
