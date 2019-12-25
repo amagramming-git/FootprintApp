@@ -12,8 +12,8 @@ class AddFootprintViewController: UIViewController {
     let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var pickerView: UIPickerView = UIPickerView()
     
-    let endTimePickerList: [String] = ["30分間","1時間", "2時間", "3時間", "4時間", "5時間", "6時間", "7時間", "8時間","9時間","10時間","11時間","12時間",""]
-    
+    let endTimePickerList: [String] = ["30分間","1時間", "2時間", "3時間", "4時間", "5時間", "6時間", "7時間", "8時間","9時間","10時間","11時間","12時間","24時間"]
+    let endTimePickerDictionary = ["30分間":30,"1時間":60, "2時間":120, "3時間":180, "4時間":240, "5時間":300, "6時間":360, "7時間":420, "8時間":480,"9時間":540,"10時間":600,"11時間":660,"12時間":720,"24時間":1440]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +44,14 @@ class AddFootprintViewController: UIViewController {
     
 
     @IBAction func titleTextField(_ sender: Any) {
+        
     }
     
     @IBAction func finishTimeTextField(_ sender: Any) {
+        
     }
-    
+    var titleTextFieldValidation: Bool = false
+    var finishTimeTextFielldValidation:Bool = false
     
     @IBOutlet weak var titleTextField: UITextField!
     
@@ -73,7 +76,7 @@ class AddFootprintViewController: UIViewController {
     @IBAction func startButton(_ sender: Any) {
         //バリデーションを確認する。
         
-        if self.titleTextField.text != nil && self.finishTimeTextField.text != nil{
+        if self.titleTextField.text != "" && self.finishTimeTextField.text != ""{
             //UserDefaultsにこれから実行するtaskIdをセットする,加え実行フラグを立てる
             let userDefaults = UserDefaults.standard
             var value = userDefaults.integer(forKey: "taskId")
@@ -90,6 +93,11 @@ class AddFootprintViewController: UIViewController {
                     if let viewController = self.viewController{
                         viewController.footprints.append(footprint)
                         viewController.footprintTableView.reloadData()
+                        //入力値と入力チェック用のBool値を初期値に戻す
+                        self.titleTextField.text = ""
+                        self.finishTimeTextField.text = ""
+                        titleTextFieldValidation = false
+                        finishTimeTextFielldValidation = false
                     }
                 }
             }
@@ -97,10 +105,11 @@ class AddFootprintViewController: UIViewController {
             self.dismiss(animated: true, completion:nil)
         }else{
             //警告文を加える
-            if self.titleTextField.text != nil{
+            if self.titleTextField.text == ""{
                 titleLabel.text = "タイトルを入力してください"
+                
             }
-            if self.finishTimeTextField.text != nil{
+            if self.finishTimeTextField.text == ""{
                 endTimeLabel.text = "位置情報取得時間を入力してください"
             }
         }
@@ -111,8 +120,18 @@ class AddFootprintViewController: UIViewController {
         //キャンセルボタン押下時は何もせず戻る
         self.dismiss(animated: true, completion:nil)
     }
+    
+    //キーボードが開いてる時にそれ以外の場所を触ったときの処理
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func Initialize(){
+        self.titleTextField.text = ""
+        self.finishTimeTextField.text = ""
+        titleTextFieldValidation = false
+        finishTimeTextFielldValidation = false
+        
     }
 
     /*

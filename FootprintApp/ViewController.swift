@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource ,CLLocationManagerDelegate{
     //AppDelegateのインスタンスを取得
     let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
@@ -17,15 +18,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var footprintTableView: UITableView!
     
-    @IBAction func statusButton(_ sender: Any) {
-        //performSegue(withIdentifier: "showAddFootprintViewController", sender: nil)
+    
+    @IBAction func addFootprintButton(_ sender: Any) {
         if let addFootprintViewController = addFootprintViewController {
             present(addFootprintViewController, animated: true, completion: nil)
         }
     }
-    
-    @IBOutlet weak var statusButton: UIButton!
-    
     
     
     
@@ -88,5 +86,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //let secondVC: ConfirmationViewController = segue.destination as! ConfirmationViewController
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("ビューが読み込まれたよ")
+        //locationServicesEnabledをう使って判定
+    }
+    
+    // MARK: 位置情報関係
+    
 }
 
