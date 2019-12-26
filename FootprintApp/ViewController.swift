@@ -29,6 +29,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //画面遷移先のインスタンスを保持
     var addFootprintViewController:AddFootprintViewController?
+    //位置情報マネージャー
+    var locationManager : CLLocationManager!
+    
     
     //画面初期処理
     override func viewDidLoad() {
@@ -40,10 +43,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.footprints.append(footprint)
             }
         }
+        //足跡追加画面をインスタンス化して属性値に保持する
         addFootprintViewController = storyboard?.instantiateViewController(withIdentifier: "showAddFootprintViewController") as? AddFootprintViewController
         if let addFootprintViewController = self.addFootprintViewController{
             addFootprintViewController.viewController = self
         }
+        //位置情報関係の初期処理
+        locationManager = CLLocationManager.init() //インスタンス生成
+        locationManager.allowsBackgroundLocationUpdates = true // バックグランドモードで使用する場合YESにする必要がある
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest // 位置情報取得の精度
+        locationManager.distanceFilter = 1 // 位置情報取得する間隔、1m単位とする
+        locationManager.delegate = self  // CLLocationManagerDelegateプロトコルを実装するクラスを指定する
+        //一応状態チェックをして、常に位置情報の許可をしていなければその許可を促す
+        let status = CLLocationManager.authorizationStatus()
+        checkStatusAndrequestAlwaysAuthorization(status:status)
     }
     
     // MARK: Table View関係
@@ -93,6 +106,66 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     // MARK: 位置情報関係
+    //状態チェックの共通メソッドを分けた。ステータス変更した時と画面を読み込んだ時にとりあえず変更を求めるようにしているけど
+    func checkStatusAndrequestAlwaysAuthorization(status: CLAuthorizationStatus){
+        if (status == .notDetermined) {
+            print("許可、不許可を選択してない")
+            // 常に許可するように求める
+            locationManager.requestAlwaysAuthorization()
+        }
+        else if (status == .restricted) {
+            print("機能制限している")
+            // 常に許可するように求める
+            locationManager.requestAlwaysAuthorization()
+        }
+        else if (status == .denied) {
+            print("許可していないぜ");
+            // 常に許可するように求める
+            locationManager.requestAlwaysAuthorization()
+        }
+        else if (status == .authorizedWhenInUse) {
+            print("このアプリ使用中のみ許可しているぜ");
+        }
+        else if (status == .authorizedAlways) {
+            print("常に許可しているぜ");
+        }
+    }
+    // 位置情報が取得されると呼ばれる
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // 最新の位置情報を取得 locationsに配列で入っている位置情報の最後が最新となる
+        let location : CLLocation = locations.last!;
+        //データ永続化を試してみる
+        let f = DateFormatter()
+        f.dateFormat = "yyyyMMddHHmmss"
+        let now = Date()
+        let nowInt = Int(f.string(from: now))
+        let endTimeInt = Int(UserDefaults.standard.string(forKey: "endTime")!)
+        if let nowInt = nowInt{
+            if let endTimeInt = endTimeInt{
+                if nowInt < endTimeInt{
+                    if let dataController = appDelegate.dataController {
+                        let value = UserDefaults.standard.integer(forKey: "taskId")
+                        dataController.saveLocation(time: f.string(from: now), latitude: location.coordinate.latitude, longitude:           location.coordinate.longitude, taskId: Int32(value))
+                        let locations:[Locations] = dataController.fetchLocations()
+                        print(locations.count)
+                    }
+                }else{
+                    locationManager.stopUpdatingLocation()
+                }
+            }
+        }
+        
+    }
+    
+    // 位置情報の取得に失敗すると呼ばれる
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("位置情報の取得に失敗しました")
+    }
+    
+    //多分ステータスを変更したタイミングで呼ばれるんだと思う。
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        checkStatusAndrequestAlwaysAuthorization(status:status)
+    }
     
 }
 

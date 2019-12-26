@@ -7,13 +7,13 @@
 //
 
 import UIKit
-
+import CoreLocation
 class AddFootprintViewController: UIViewController {
     let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var pickerView: UIPickerView = UIPickerView()
     
     let endTimePickerList: [String] = ["30分間","1時間", "2時間", "3時間", "4時間", "5時間", "6時間", "7時間", "8時間","9時間","10時間","11時間","12時間","24時間"]
-    let endTimePickerDictionary = ["30分間":30,"1時間":60, "2時間":120, "3時間":180, "4時間":240, "5時間":300, "6時間":360, "7時間":420, "8時間":480,"9時間":540,"10時間":600,"11時間":660,"12時間":720,"24時間":1440]
+    let endTimePickerDictionary:Dictionary<String,Int> = ["30分間":30,"1時間":60, "2時間":120, "3時間":180, "4時間":240, "5時間":300, "6時間":360, "7時間":420, "8時間":480,"9時間":540,"10時間":600,"11時間":660,"12時間":720,"24時間":1440]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,25 +79,27 @@ class AddFootprintViewController: UIViewController {
         if self.titleTextField.text != "" && self.finishTimeTextField.text != ""{
             //UserDefaultsにこれから実行するtaskIdをセットする,加え実行フラグを立てる
             let userDefaults = UserDefaults.standard
-            var value = userDefaults.integer(forKey: "taskId")
-            value = value + 1
-            userDefaults.set(value, forKey: "taskId")
+            var taskId = userDefaults.integer(forKey: "taskId")
+            taskId = taskId + 1
+            let minute = self.endTimePickerDictionary[self.finishTimeTextField.text!]!
             //CoreDataに今回のtaskIdについて保存する
             let f = DateFormatter()
             f.dateFormat = "yyyyMMddHHmmss"
             let startTime = Date()
-            let endTime = Calendar.current.date(byAdding: .hour, value: Int(self.finishTimeTextField.text!)!, to: startTime)!
+            let endTime = Calendar.current.date(byAdding: .minute, value: minute, to: startTime)!
+            //UserDefaltsにも必要な情報を書き加える
+            userDefaults.set(taskId, forKey: "taskId")
+            userDefaults.set(endTime,forKey: "endTime")
             if let dataController = appDelegate.dataController {
-                let footprint = dataController.saveFootprint(title: self.titleTextField.text!, startTime: f.string(from: startTime), endTime: f.string(from: endTime), taskId: Int32(value))
+                let footprint = dataController.saveFootprint(title: self.titleTextField.text!, startTime: f.string(from: startTime), endTime: f.string(from: endTime), taskId: Int32(taskId))
                 if let footprint = footprint{
                     if let viewController = self.viewController{
                         viewController.footprints.append(footprint)
                         viewController.footprintTableView.reloadData()
                         //入力値と入力チェック用のBool値を初期値に戻す
-                        self.titleTextField.text = ""
-                        self.finishTimeTextField.text = ""
-                        titleTextFieldValidation = false
-                        finishTimeTextFielldValidation = false
+                        initialize()
+                        //位置情報取得を開始する
+                        self.viewController?.locationManager.startUpdatingLocation()
                     }
                 }
             }
@@ -126,12 +128,11 @@ class AddFootprintViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    func Initialize(){
+    func initialize(){
         self.titleTextField.text = ""
         self.finishTimeTextField.text = ""
         titleTextFieldValidation = false
         finishTimeTextFielldValidation = false
-        
     }
 
     /*
